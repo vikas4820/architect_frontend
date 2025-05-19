@@ -1,0 +1,5 @@
+<div class="text-danger mt-1" *ngIf="control && control.touched && control.invalid">
+  <small *ngFor="let key of errorKeys">
+    <ng-container *ngIf="messages[key]">{{ messages[key] }}</ng-container>
+  </small>
+</div>

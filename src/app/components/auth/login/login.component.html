@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-login">
+  <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px; border-radius: 1rem;">
+    <div class="text-center mb-4">
+      <img src="https://img.icons8.com/fluency/96/000000/user-male-circle.png" alt="user" width="80" />
+      <h4 class="mt-2">Welcome Back</h4>
+      <p class="text-muted">Please login to your account</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-floating mb-3">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email" />
+        <app-form-error [control]="loginForm.get('email')" [messages]="formValidationMessage.email"></app-form-error>
+      </div>
+
+      <div class="form-floating mb-3">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"/>
+        <app-form-error [control]="loginForm.get('password')" [messages]="formValidationMessage.password"></app-form-error>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="disableBtn || !loginForm.valid">Login</button>
+
+      <div class="text-center mt-3 d-flex justify-content-center gap-4">
+        <a routerLink="/auth/forget-password" class="text-decoration-none small mr-5">Forgot password?</a>
+        <a routerLink="/auth/reset-password" class="text-decoration-none small">Reset password?</a>
+      </div>
+    </form>
+  </div>
+</div>
