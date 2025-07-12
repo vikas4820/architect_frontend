@@ -8,10 +8,13 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService extends BaseApiService {
 
   private jwtHelper = new JwtHelperService();
-  private readonly url = `${this.baseUrl}/auth/login`;
+  private readonly url = `auth/login`;
 
   getToken(): string | null {
     return localStorage.getItem('access_token');
+  }
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('access_token');
   }
 
   // Decode the token

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "REALSTATE_F": {
+    "architect_frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/realstate-f",
+            "outputPath": "dist/architect_frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -45,23 +45,25 @@
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/aos/dist/aos.js"
-            ]
+            ],
+            "allowedCommonJsDependencies": ["aos"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "5MB",
+                  "maximumError": "6MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "500kB",
+                  "maximumError": "600kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/architect_frontend/"
             },
             "development": {
               "optimization": false,
@@ -81,10 +83,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "REALSTATE_F:build:production"
+              "buildTarget": "architect_frontend:build:production"
             },
             "development": {
-              "buildTarget": "REALSTATE_F:build:development"
+              "buildTarget": "architect_frontend:build:development"
             }
           },
           "defaultConfiguration": "development"

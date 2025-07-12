@@ -1,0 +1,17 @@
+.submenu {
+  display: none;
+  padding-left: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.submenu.show {
+  display: block;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+.has-submenu {
+  cursor: pointer;
+}

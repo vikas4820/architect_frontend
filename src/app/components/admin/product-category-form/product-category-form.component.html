@@ -1,1 +1,68 @@
-<p>product-category-form works!</p>
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-car icon-gradient bg-mean-fruit"></i>
+                </div>
+                <div>
+                    {{ category?.id ? "Update" : "Create" }} Product Category
+                    <div class="page-title-subheading">
+                        This is an example dashboard created using build-in elements and components.
+                    </div>
+                </div>
+            </div>
+            <div class="page-title-actions">
+                <a routerLink="/admin/products/product-category" class="btn-shadow mr-3 btn btn-dark"><i class="fa-solid fa-backward"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-card mb-3 card mt-3">
+                <div class="card-body">
+                    <form class="" [formGroup]="productCategoryForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label for="categoryName" class="">Category Name</label>
+                                    <input 
+                                        formControlName="categoryName"
+                                        name="categoryName" 
+                                        id="categoryName" 
+                                        placeholder="enter category name" 
+                                        type="text" 
+                                        class="form-control"
+                                        [ngClass]="{
+                                            'is-invalid': productCategoryForm.get('categoryName')?.invalid && (productCategoryForm.get('categoryName')?.dirty || productCategoryForm.get('categoryName')?.touched),
+                                            'is-valid': productCategoryForm.get('categoryName')?.valid && (productCategoryForm.get('categoryName')?.dirty || productCategoryForm.get('categoryName')?.touched)
+                                        }"
+                                        />
+                                    <app-form-error [control]="productCategoryForm.get('categoryName')" [messages]="formValidationMessage.categoryName"></app-form-error>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label for="description" class="">Description</label>
+                                    <textarea 
+                                        formControlName="description" 
+                                        class="form-control" 
+                                        name="" 
+                                        id=""
+                                        [ngClass]="{
+                                            'is-invalid': productCategoryForm.get('description')?.invalid && (productCategoryForm.get('description')?.dirty || productCategoryForm.get('description')?.touched),
+                                            'is-valid': productCategoryForm.get('description')?.valid && (productCategoryForm.get('description')?.dirty || productCategoryForm.get('description')?.touched)
+                                        }"
+                                    ></textarea>
+                                    <app-form-error [control]="productCategoryForm.get('description')" [messages]="formValidationMessage.description"></app-form-error>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" [disabled]="disabledBtn || !productCategoryForm.valid" class="mt-2 btn btn-primary">{{ category?.id ? "Update" : "Create" }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

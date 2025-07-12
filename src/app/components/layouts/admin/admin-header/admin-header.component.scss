@@ -1,0 +1,9 @@
+.app-container.closed-sidebar .app-sidebar {
+  width: 0;
+  overflow: hidden;
+}
+
+.app-sidebar {
+  width: 250px;
+  transition: width 0.3s ease;
+}

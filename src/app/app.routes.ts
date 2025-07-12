@@ -9,6 +9,9 @@ import { ForgetPasswordComponent } from './components/auth/forget-password/forge
 import { ProductsComponent } from './components/admin/products/products.component';
 import { ProductFormComponent } from './components/admin/product-form/product-form.component';
 import { ProductCategoryComponent } from './components/admin/product-category/product-category.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AlredayLoggedInGuard } from './guards/alreday-logged-in.guard';
+import { ProductCategoryFormComponent } from './components/admin/product-category-form/product-category-form.component';
 
 export const routes: Routes = [
   {
@@ -24,7 +27,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
@@ -36,24 +39,24 @@ export const routes: Routes = [
         component: ProductsComponent,
       },
       {
-        path: 'product-form/add',
+        path: 'products/add',
         component: ProductFormComponent,
       },
       {
-        path: 'product-form/edit/:id',
+        path: 'products/edit/:id',
         component: ProductFormComponent,
       },
       {
-        path: 'product-category',
+        path: 'products/product-category',
         component: ProductCategoryComponent,
       },
       {
-        path: 'product-category/add',
-        component: ProductCategoryComponent,
+        path: 'products/product-category/add',
+        component: ProductCategoryFormComponent,
       },
       {
-        path: 'product-category/edit/:id',
-        component: ProductCategoryComponent,
+        path: 'products/product-category/edit/:id',
+        component: ProductCategoryFormComponent,
       },
     ],
   },
@@ -62,6 +65,7 @@ export const routes: Routes = [
   {
     path: 'auth/login',
     component: LoginComponent,
+    canActivate: [AlredayLoggedInGuard],
   },
   {
     path: 'auth/reset-password',

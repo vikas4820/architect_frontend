@@ -1,1 +1,138 @@
-<p>product-form works!</p>
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-car icon-gradient bg-mean-fruit"></i>
+                </div>
+                <div>
+                    {{ product?.id ? "Update" : "Create" }} Product
+                    <div class="page-title-subheading">
+                        This is an example dashboard created using build-in elements and components.
+                    </div>
+                </div>
+            </div>
+            <div class="page-title-actions">
+                <a routerLink="/admin/products" class="btn-shadow mr-3 btn btn-dark"><i class="fa-solid fa-backward"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-card mb-3 card mt-3">
+                <div class="card-body">
+                    <form class="" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="productName" class="">Product Name</label>
+                                    <input 
+                                        formControlName="productName"
+                                        name="productName" 
+                                        id="productName" 
+                                        placeholder="enter product name" 
+                                        type="text" 
+                                        class="form-control"
+                                        [ngClass]="{
+                                            'is-invalid': productForm.get('productName')?.invalid && (productForm.get('productName')?.dirty || productForm.get('productName')?.touched),
+                                            'is-valid': productForm.get('productName')?.valid && (productForm.get('productName')?.dirty || productForm.get('productName')?.touched)
+                                        }"
+                                        />
+                                    <app-form-error [control]="productForm.get('productName')" [messages]="formValidationMessage.productName"></app-form-error>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="productCategory" class="">Product Category</label>
+                                    <select
+                                        formControlName="productCategory"
+                                        name="productCategory"
+                                        id="productCategory"
+                                        class="form-control"
+                                        [ngClass]="{
+                                            'is-invalid': productForm.get('productCategory')?.invalid && (productForm.get('productCategory')?.dirty || productForm.get('productCategory')?.touched),
+                                            'is-valid': productForm.get('productCategory')?.valid && (productForm.get('productCategory')?.dirty || productForm.get('productCategory')?.touched)
+                                        }"
+                                    >
+                                        <option value="">Select a category</option>
+                                        <option *ngFor="let category of categoryList" [value]="category.id">{{ category.categoryName }}</option>
+                                    </select>
+                                    <app-form-error [control]="productForm.get('productCategory')" [messages]="formValidationMessage.productCategory"></app-form-error>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label for="productPrice" class="">Price</label>
+                                    <input 
+                                        formControlName="productPrice"
+                                        name="productPrice" 
+                                        id="productPrice" 
+                                        placeholder="enter product name" 
+                                        type="number" 
+                                        class="form-control"
+                                        [ngClass]="{
+                                            'is-invalid': productForm.get('productPrice')?.invalid && (productForm.get('productPrice')?.dirty || productForm.get('productPrice')?.touched),
+                                            'is-valid': productForm.get('productPrice')?.valid && (productForm.get('productPrice')?.dirty || productForm.get('productPrice')?.touched)
+                                        }"
+                                        />
+                                    <app-form-error [control]="productForm.get('productPrice')" [messages]="formValidationMessage.productPrice"></app-form-error>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label for="productQuantity" class="">Quantity</label>
+                                    <input 
+                                        formControlName="productQuantity"
+                                        name="productQuantity" 
+                                        id="productQuantity" 
+                                        placeholder="enter product name" 
+                                        type="number" 
+                                        class="form-control"
+                                        [ngClass]="{
+                                            'is-invalid': productForm.get('productQuantity')?.invalid && (productForm.get('productQuantity')?.dirty || productForm.get('productQuantity')?.touched),
+                                            'is-valid': productForm.get('productQuantity')?.valid && (productForm.get('productQuantity')?.dirty || productForm.get('productQuantity')?.touched)
+                                        }"
+                                        />
+                                    <app-form-error [control]="productForm.get('productQuantity')" [messages]="formValidationMessage.productQuantity"></app-form-error>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="formFile" class="form-label">Image</label>
+                                    <input 
+                                        class="form-control" 
+                                        type="file" 
+                                        id="formFile"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label for="productDescription" class="">Description</label>
+                                    <textarea 
+                                        formControlName="productDescription" 
+                                        class="form-control" 
+                                        name="" 
+                                        id=""
+                                        [ngClass]="{
+                                            'is-invalid': productForm.get('productDescription')?.invalid && (productForm.get('productDescription')?.dirty || productForm.get('productDescription')?.touched),
+                                            'is-valid': productForm.get('productDescription')?.valid && (productForm.get('productDescription')?.dirty || productForm.get('productDescription')?.touched)
+                                        }"
+                                    ></textarea>
+                                    <app-form-error [control]="productForm.get('productDescription')" [messages]="formValidationMessage.productDescription"></app-form-error>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" [disabled]="disabledBtn || !productForm.valid" class="mt-2 btn btn-primary">{{ product?.id ? "Update" : "Create" }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-admin-header',
@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './admin-header.component.scss'
 })
 export class AdminHeaderComponent {
+
+  @Output() toggleSidebar = new EventEmitter<void>();
+
+  onToggleSidebar() {
+    this.toggleSidebar.emit();
+  }
 
 }

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormErrorComponent } from '../../comman/form-error/form-error.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '@auth0/angular-jwt';
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService,
+    private router: Router,
   ) {
     this.manageLoginForm();
     this.formValidationMessage = {
@@ -62,6 +63,10 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid) {
       try {
         let result = await this.authService.login(this.loginForm.value);
+        if(result?.access_token) {
+          localStorage.setItem('access_token', result.access_token);
+          this.router.navigate(['/admin/dashboard']);
+        }
         console.log("result", result);
       } catch (error) {
         
